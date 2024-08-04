@@ -2,14 +2,14 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import joblib
+import os
 
 from sklearn.model_selection import learning_curve, cross_val_score, GridSearchCV
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
-from imblearn.over_sampling import ADASYN
-from imblearn.over_sampling import SMOTE
 
 def plot_accuracy(model, name, X_train, y_train):
     '''
@@ -53,6 +53,9 @@ def fit_and_score(models, X_train, X_test, y_train, y_test):
 
 # Print Scores
 def print_scores(model_scores):
+   '''
+   Print scores given hash
+   '''
    for k, v in model_scores.items():
       print(f"{k}:{v}\n")
 
@@ -74,6 +77,9 @@ def plot_confusion_matrix(y_test, y_preds):
 
 # Cross Validated Metrics
 def cross_validated_metrics(model, x, y, cv=5):
+   '''
+   Returns data frame with cross validated metric results
+   '''
    scores = {}
    scores['accuracy'] = np.mean(cross_val_score(model,x, y, cv=cv, scoring='accuracy'))
    scores['precision'] = np.mean(cross_val_score(model, x, y, cv=cv, scoring='precision_weighted'))
@@ -83,29 +89,24 @@ def cross_validated_metrics(model, x, y, cv=5):
    return pd.DataFrame(scores, index=[0])
 
 def plot_validated_metrics(cv_metrics):
+   '''
+   Plots a bar chart with cross validated metrics
+   '''
    return cv_metrics.T.plot(kind='bar', title='Cross validated metrics', legend=False)
 
 def fine_tune_model(model, param_grid, X_train, y_train):
+   '''
+   Returns best model given a parameter grid
+   '''
    grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, n_jobs=1, verbose=True)
    grid_search.fit(X_train, y_train)
 
-   return grid_search.best_params_
-
-def resample_training_set(X_train, y_train):
-   adasyn = ADASYN(random_state=42)
-   X_resampled, y_resampled = adasyn.fit_resample(X_train, y_train)
-
-   return (X_resampled, y_resampled)
-
-def smote_training_set(X_train, y_train):
-   smote = SMOTE(random_state=42)
-
-   X_resampled, y_resampled = smote.fit_resample(X_train, y_train)
-
-   return (X_resampled, y_resampled)
-
+   return grid_search.best_estimator_
 
 def build_pipeline(model):
+   '''
+   Builds pipeline given model
+   '''
    pipeline = Pipeline([
       ('imputer', SimpleImputer(strategy='mean')),
       ('scaler', StandardScaler()),
@@ -113,3 +114,23 @@ def build_pipeline(model):
    ])
 
    return pipeline
+
+
+def export_models(models):
+    '''
+    Export models to '../models/predictors'
+    '''
+    # Define the directory where models will be saved
+    model_dir = '../models/predictors'
+    
+    # Ensure the directory exists
+    os.makedirs(model_dir, exist_ok=True)
+
+    for model_name, model_instance in models.items():
+        # Sanitize model_name for file naming
+        sanitized_model_name = model_name.replace(' ', '_')
+        filename = os.path.join(model_dir, f"{sanitized_model_name}_model.pkl")
+        
+        # Save the model
+        joblib.dump(model_instance, filename)
+        print(f"Model '{model_name}' saved to '{filename}'")
