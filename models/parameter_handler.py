@@ -6,9 +6,9 @@ import pandas as pd
 class ParameterHandler:
     def __init__(self, form_data, scaler_path='models/scalers/scaler.pkl'):
         self.form_data = form_data
-        scaler_data = joblib.load(scaler_path)
-        self.scaler = scaler_data['scaler']
-        self.feature_names = scaler_data['feature_names']
+        self.scaler_data = joblib.load(scaler_path)
+        self.scaler = self.scaler_data['scaler']
+        self.feature_names = self.scaler_data['feature_names']
         self.mapping_dict = {
             'Gender': { 'Male': 0, 'Female': 1},
             'Age': { '26-35': 0, '36-45': 1, '46-55': 2, '55-59': 3 },

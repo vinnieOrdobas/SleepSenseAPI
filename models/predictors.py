@@ -1,15 +1,16 @@
 import joblib
 import os
 import numpy as np
+from parameter_handler import ParameterHandler
 
 from sklearn.base import is_classifier
 
 class Predictors:
-    def __init__(self, model_dir='models/predictors'):
+    def __init__(self, form_data, model_dir='models/predictors'):
         '''
         Initialize models and output prediction
         '''
-
+        self.parameter_handler = ParameterHandler(form_data)
         self.model_dir = model_dir
         self.models = self._load_models()
 

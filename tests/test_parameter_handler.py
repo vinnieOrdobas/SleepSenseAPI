@@ -64,12 +64,6 @@ def test_process_inputs(setup_parameter_handler):
     # Transform the expected values using the scaler
     scaled_expected_values = scaler.transform(expected_df)
 
-    # Debug: Print intermediate values
-    print("Processed Inputs:", processed_inputs)
-    print("Expected Values:", expected_values)
-    print("Expected DataFrame:\n", expected_df)
-    print("Scaled Expected Values:", scaled_expected_values)
-
     # Check the shape of processed inputs
     assert processed_inputs.shape == (1, len(feature_names))  # Ensure the number of features matches the scaler
 
