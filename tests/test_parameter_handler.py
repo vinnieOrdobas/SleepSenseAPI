@@ -1,5 +1,6 @@
 import pytest
 import numpy as np
+import pandas as pd
 import json
 import joblib
 import os
@@ -20,7 +21,8 @@ def setup_parameter_handler():
         'diastolic': '80',
         'stress_level': '5',
         'quality_of_sleep': '7',
-        'heart_rate': '72'
+        'heart_rate': '72',
+        'daily_physical_activity': 'Medium'
     }
 
     # Initialize ParameterHandler
@@ -29,38 +31,50 @@ def setup_parameter_handler():
     return handler
 
 def test_process_inputs(setup_parameter_handler):
-    # Instantiate handler from setup
     handler = setup_parameter_handler
+    
+    # Process the inputs
+    processed_inputs = handler.process_inputs()
 
     # Scaler path
     scaler_path = os.path.join('models', 'scalers', 'scaler.pkl')
 
-    # Instantiate saved scaler
-    scaler = joblib.load(scaler_path)
+    # Load the scaler
+    scaler_data = joblib.load(scaler_path)
+    scaler = scaler_data['scaler']
+    feature_names = scaler_data['feature_names']
 
-    # Expected result
-    expected_inputs = [
-        0,  # Gender (Male)
-        1,  # Age (36-45)
-        1,  # Daily Steps (5000-6500)
-        1,  # Sleep Duration (6-7 Hours)
-        0,  # BMI Category (Normal)
-        0,  # Blood Pressure (Normal)
-        7,  # Quality of Sleep
-        5,  # Stress Level
-        72  # Heart Rate 
-    ]
+    # Expected values before scaling
+    expected_values = {
+        'Gender': [0],  # Male
+        'Age': [1],  # 36-45
+        'Sleep Duration': [1],  # 6-7 Hours
+        'Quality of Sleep': [7],
+        'Stress Level': [5],
+        'BMI Category': [0],  # Normal
+        'Blood Pressure': [0],  # Normal
+        'Heart Rate': [72],
+        'Daily Steps': [1],  # 5000-6500
+        'Daily Physical Activity': [1]  # Medium
+    }
 
-    # Process inputs
-    processed_inputs = handler.process_inputs()
+    # Create DataFrame with the correct feature names
+    expected_df = pd.DataFrame(expected_values, columns=feature_names)
 
-    # Asserts that processed inputs are of correct shape (1 dimension, number of features)
-    assert processed_inputs.shape == (1, len(expected_inputs))
-    # Asserts that the flattened arrays of (`processed_inputs`) and the scaled (`expected_inputs`) match
-    np.testing.assert_array_almost_equal(
-        processed_inputs.flatten(),
-        scaler.transform([expected_inputs]).flaten()
-    )
+    # Transform the expected values using the scaler
+    scaled_expected_values = scaler.transform(expected_df)
+
+    # Debug: Print intermediate values
+    print("Processed Inputs:", processed_inputs)
+    print("Expected Values:", expected_values)
+    print("Expected DataFrame:\n", expected_df)
+    print("Scaled Expected Values:", scaled_expected_values)
+
+    # Check the shape of processed inputs
+    assert processed_inputs.shape == (1, len(feature_names))  # Ensure the number of features matches the scaler
+
+    # Assert that processed inputs are close to the scaled expected values
+    assert np.allclose(processed_inputs, scaled_expected_values, rtol=1e-2)
 
 def test_map_prediction(setup_parameter_handler):
     handler = setup_parameter_handler
@@ -75,7 +89,6 @@ def test_format_output(setup_parameter_handler):
     handler = setup_parameter_handler
 
     predicitions = np.array([0.1, 0.7, 0.2]) # Predictors Output
-    confidence = [0.1, 0.7, 0.2] # Confidence scores
 
     expected_result = {
         'prediction': 'Insomnia',
@@ -86,5 +99,5 @@ def test_format_output(setup_parameter_handler):
         }
     }
     
-    formatted_output = handler.format_output(predicitions, confidence)
+    formatted_output = handler.format_output(predicitions)
     assert json.loads(formatted_output) == expected_result

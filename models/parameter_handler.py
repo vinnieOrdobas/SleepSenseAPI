@@ -1,18 +1,22 @@
 import numpy as np
 import json
 import joblib
+import pandas as pd
 
 class ParameterHandler:
     def __init__(self, form_data, scaler_path='models/scalers/scaler.pkl'):
         self.form_data = form_data
-        self.scaler = joblib.load(scaler_path)
+        scaler_data = joblib.load(scaler_path)
+        self.scaler = scaler_data['scaler']
+        self.feature_names = scaler_data['feature_names']
         self.mapping_dict = {
             'Gender': { 'Male': 0, 'Female': 1},
             'Age': { '26-35': 0, '36-45': 1, '46-55': 2, '55-59': 3 },
             'Sleep Duration': { '5-6 Hours': 0, '6-7 Hours': 1, '7-8 Hours': 2, '8-9 Hours': 3 },
             'BMI Category': { 'Normal': 0, 'Overweight': 1, 'Obese': 2 },
             'Daily Steps': { 'Under 4000': 0, '5000-6500': 1, '7000-9000': 2, 'Over 10000': 3 },
-            'Sleep Disorder': { 'None': 0, 'Insomnia': 1, 'Sleep Apnea': 2 }
+            'Sleep Disorder': { 'None': 0, 'Insomnia': 1, 'Sleep Apnea': 2 },
+            'Daily Physical Activity': { 'Low': 0, 'Medium': 1, 'High': 2 }
         }
 
     def process_inputs(self):
@@ -20,7 +24,8 @@ class ParameterHandler:
         Returns numpy array to feed to predictors
         '''
         inputs = self._normalize_inputs()
-        scaled_inputs = self.scaler.transform([inputs])
+        inputs_df = pd.DataFrame([inputs], columns=self.feature_names)
+        scaled_inputs = self.scaler.transform(inputs_df)
         return np.array(scaled_inputs).reshape(1, -1)
     
     def format_output(self, predictions):
@@ -55,11 +60,12 @@ class ParameterHandler:
         stress_level = int(self.form_data['stress_level'])
         quality_of_sleep = int(self.form_data['quality_of_sleep'])
         heart_rate = int(self.form_data['heart_rate'])
-
+        daily_physical_activity = self.mapping_dict['Daily Physical Activity'][self.form_data['daily_physical_activity']]
+        
         return [
-            gender, age, daily_steps, sleep_duration, 
-            bmi_category, blood_pressure, quality_of_sleep,
-            stress_level, heart_rate
+            gender, age, sleep_duration, quality_of_sleep, 
+            stress_level, bmi_category, blood_pressure,
+            heart_rate, daily_steps, daily_physical_activity
         ]
     
     def _calculate_bmi_category(self):

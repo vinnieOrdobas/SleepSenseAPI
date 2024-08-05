@@ -135,7 +135,7 @@ def export_models(models):
         joblib.dump(model_instance, filename)
         print(f"Model '{model_name}' saved to '{filename}'")
 
-def export_scaler(scaler):
+def export_scaler(scaler, feature_names):
     '''
     Export scaler to process form data
     '''
@@ -147,5 +147,9 @@ def export_scaler(scaler):
     # Ensure the directory exists
     os.makedirs(scaler_dir, exist_ok=True)
 
-    # Save the scaler
-    joblib.dump(scaler, scaler_path)
+    scaler_data = {
+      'scaler': scaler,
+      'feature_names': feature_names
+    }
+
+    joblib.dump(scaler_data, scaler_path)

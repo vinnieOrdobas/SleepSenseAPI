@@ -86,10 +86,12 @@ class ModelInputs:
 
         x = self.df.drop(['Sleep Disorder'], axis=1)
         y = self.df['Sleep Disorder']
+
         # Split data into train and test sets
         X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=test_size, random_state=42)
         
         # Standardize features
+        feature_names = x.columns.tolist()
         scaler = StandardScaler()
         self.X_train = scaler.fit_transform(X_train)
         self.X_test = scaler.transform(X_test)
@@ -97,6 +99,6 @@ class ModelInputs:
         self.y_test = y_test
 
         # Save scaler
-        export_scaler(scaler)
+        export_scaler(scaler, feature_names)
 
         return self
