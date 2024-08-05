@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
+from models.predictors import Predictors
 
 app = Flask(__name__)
 
@@ -10,11 +11,23 @@ def index():
 def form():
     return render_template('form.html')
 
-@app.route('/submit', methods=['POST'])
-def submit():
-    data = request.form.get('data')
-    # Here, you can process the data, e.g., pass it to your model for prediction
-    return redirect(url_for('index'))
+@app.route('/predict', methods=['POST'])
+def predict():
+    form_data = request.form.to_dict()
+    
+    predictor = Predictors(form_data=form_data)
+
+    inputs = predictor.parameter_handler.process_inputs()
+
+    try:
+        predictions = predictor.predict(inputs)
+        response = predictor.parameter_handler.format_output(predictions)
+    except Exception as error:
+        response = {
+            'error': str(error)
+        }
+
+    return jsonify(response)
 
 if __name__ == '__main__':
     app.run(debug=True)

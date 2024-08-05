@@ -32,16 +32,15 @@ class ParameterHandler:
         '''
         Formats prediction to JSON output
         '''
+
         predicted_class = np.argmax(predictions)
-        confidence_score = predictions.tolist()
+        confidence_score = predictions.flatten().tolist()
+
+        class_labels = ['None', 'Insomnia', 'Sleep Apnea']
 
         result = {
             'prediction': self._map_prediction(predicted_class),
-            'confidence': {
-                'None': confidence_score[0],
-                'Insomnia': confidence_score[1],
-                'Sleep Apnea': confidence_score[2]
-            }
+            'confidence': {label: confidence_score[i] for i, label in enumerate(class_labels)}
         }
 
         return json.dumps(result)

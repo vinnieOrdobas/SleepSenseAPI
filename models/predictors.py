@@ -1,7 +1,7 @@
 import joblib
 import os
 import numpy as np
-from parameter_handler import ParameterHandler
+from .parameter_handler import ParameterHandler
 
 from sklearn.base import is_classifier
 
@@ -44,4 +44,4 @@ class Predictors:
         
         avg_predictions = np.mean(model_predictions, axis=0)
 
-        return np.argmax(avg_predictions, axis=1)
+        return avg_predictions

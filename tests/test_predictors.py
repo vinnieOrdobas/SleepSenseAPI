@@ -2,8 +2,7 @@ import pytest
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from predictors import Predictors
-from parameter_handler import ParameterHandler
+from models.predictors import Predictors
 
 @pytest.fixture
 def mock_scaler(mocker):
@@ -76,6 +75,6 @@ def test_predict(predictor_instance, sample_data):
 
     expected_proba = np.array([[0.2, 0.5, 0.3], [0.1, 0.6, 0.3], [0.3, 0.4, 0.3]])
     expected_avg_proba = np.mean(expected_proba, axis=0)
-    expected_class = np.argmax(expected_avg_proba)
     
-    assert np.array_equal(prediction, [expected_class]), f"Expected {[expected_class]} but got {prediction}"
+    assert np.allclose(prediction, expected_avg_proba, rtol=1e-2), \
+        f"Expected probabilities {expected_avg_proba} but got {prediction}"

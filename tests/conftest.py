@@ -1,6 +1,8 @@
 import sys
 import os
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../models')))
-print("PYTHONPATH:", sys.path)
+# Set the PYTHONPATH to include the root directory of your project
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, root_dir)
 
+print("PYTHONPATH:", sys.path)

@@ -4,8 +4,7 @@ import pandas as pd
 import json
 import joblib
 import os
-
-from parameter_handler import ParameterHandler
+from models.parameter_handler import ParameterHandler
 
 @pytest.fixture
 def setup_parameter_handler():
