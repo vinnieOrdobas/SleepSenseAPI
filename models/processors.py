@@ -1,7 +1,7 @@
-import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
+from models.utils import export_scaler
 
 class DataProcessor:
     def __init__(self, df):
@@ -95,5 +95,8 @@ class ModelInputs:
         self.X_test = scaler.transform(X_test)
         self.y_train = y_train
         self.y_test = y_test
+
+        # Save scaler
+        export_scaler(scaler)
 
         return self

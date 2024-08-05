@@ -1,6 +1,5 @@
 import pytest
 import numpy as np
-import joblib
 from unittest.mock import MagicMock, patch
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
@@ -62,6 +61,3 @@ def test_predict(predictor_instance, sample_data):
     expected_avg_proba = np.mean(expected_proba, axis=0)
     expected_class = np.argmax(expected_avg_proba)
     assert np.array_equal(prediction, [expected_class]), f"Expected {[expected_class]} but got {prediction}"
-
-if __name__ == "__main__":
-    pytest.main()

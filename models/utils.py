@@ -123,7 +123,7 @@ def export_models(models):
     # Define the directory where models will be saved
     model_dir = '../models/predictors'
     
-    # Ensure the directory exists
+    # Ensure directory exists
     os.makedirs(model_dir, exist_ok=True)
 
     for model_name, model_instance in models.items():
@@ -134,3 +134,18 @@ def export_models(models):
         # Save the model
         joblib.dump(model_instance, filename)
         print(f"Model '{model_name}' saved to '{filename}'")
+
+def export_scaler(scaler):
+    '''
+    Export scaler to process form data
+    '''
+    # Define the directory and file path where the scaler will be saved
+    scaler_dir = '../models/scalers'
+    scaler_file = 'scaler.pkl'
+    scaler_path = os.path.join(scaler_dir, scaler_file)
+
+    # Ensure the directory exists
+    os.makedirs(scaler_dir, exist_ok=True)
+
+    # Save the scaler
+    joblib.dump(scaler, scaler_path)
