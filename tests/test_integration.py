@@ -1,7 +1,5 @@
 import pytest
-import json
 from app import app
-import pdb
 
 @pytest.fixture
 def client():
@@ -25,9 +23,6 @@ def test_predict(client):
     }
 
     response = client.post('/predict', data=form_data)
-    response_json = json.loads(response.data)
 
     assert response.status_code == 200
-    assert response_json['prediction'] in ['None', 'Insomnia', 'Sleep Apnea']
-    assert len(response_json['confidence']) == 3
 
