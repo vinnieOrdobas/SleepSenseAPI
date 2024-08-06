@@ -6,10 +6,19 @@
     <h2>Prediction Results</h2>
     <div class="card">
         <div class="card-content">
+            {% if prediction %}
             <span class="card-title">{{ prediction }}</span>
+            {% endif %}
             <ul>
                 {% for condition, confidence in confidence.items() %}
-                <li>{{ condition }}: {{ confidence | round(2) * 100 }}%</li>
+                <li>
+                    {{ condition }}
+                    <div class="confidence-bar-container">
+                        <div class="confidence-bar" style="--confidence-width: {{ confidence * 100 }}%;">
+                            <span class="confidence-percentage">{{ confidence | round(2) * 100 }}%</span>
+                        </div>
+                    </div>
+                </li>
                 {% endfor %}
             </ul>
         </div>

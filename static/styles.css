@@ -16,4 +16,76 @@ footer.page-footer {
     margin-top: auto;
 }
 
-/* Add custom styles if needed */
+/* Center the submit button and add margins */
+.submit-container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px; /* Gutter between the button and the footer */
+}
+
+/* Submit button styling */
+.submit-btn {
+    background-color: #8B4513; /* Button color can be similar to the header */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+    margin: 0 auto;
+}
+
+.submit-btn:hover {
+    background-color: #A0522D; /* Slightly lighter shade for hover effect */
+}
+
+/* Header and footer styling */
+header {
+    background-color: #6B4226; /* Warm wood-like color */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #556B2F; /* Green olive color */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Confidence bar styling */
+.confidence-bar-container {
+    position: relative;
+    background-color: #f3f3f3;
+    border-radius: 25px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.confidence-bar {
+    height: 30px;
+    background-color: green; /* Bar color */
+    border-radius: 25px 0 0 25px;
+    text-align: center;
+    line-height: 30px; /* Center the percentage text vertically */
+    color: black; /* Change text color to black */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;
+    width: var(--confidence-width);
+}
+
+.confidence-percentage {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 0;
+    left: 0;
+    color: black; /* Ensure percentage text is visible with a black color */
+    font-weight: bold;
+}
