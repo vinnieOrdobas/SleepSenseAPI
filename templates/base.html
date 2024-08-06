@@ -3,25 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Sleep Disorders API{% endblock %}</title>
-    <!-- Materialize CSS CDN -->
+    <title>{% block title %}SleepSense{% endblock %}</title>
+    <!-- Materialize CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- FontAwesome for GitHub icon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    {% block custom_css %}{% endblock %}
 </head>
+
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Sleep Disorders API</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <!-- Navigation Bar -->
+    <nav class="nav-wrapper teal">
+        <div class="container">
+            <a href="#" class="brand-logo">SleepSense</a>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('form') }}">Form</a></li>
+                <li><a href="#!">About</a></li>
+                <li><a href="#!">Contact</a></li>
+            </ul>
+            <!-- Mobile Navigation -->
+            <ul class="sidenav" id="mobile-nav">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('form') }}">Form</a></li>
+                <li><a href="#!">About</a></li>
+                <li><a href="#!">Contact</a></li>
             </ul>
         </div>
     </nav>
+
+    <!-- Content -->
     <div class="container">
         {% block content %}{% endblock %}
     </div>
-    <!-- Materialize JavaScript CDN -->
+
+    <!-- Footer -->
+    <footer class="page-footer teal">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <span class="white-text">&copy; {{ current_year }} SleepSense</span>
+                    <a href="https://github.com/yourusername/yourrepository" target="_blank" class="white-text">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
     <!-- Custom JS -->
     {% block custom_js %}{% endblock %}
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>

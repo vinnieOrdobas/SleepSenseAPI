@@ -5,6 +5,7 @@
 {% block content %}
     <h2>Health Data Form</h2>
     <form id="healthForm" action="/predict" method="post" class="col s12">
+        <!-- Gender Field -->
         <div class="input-field col s12">
             <select id="gender" name="gender" class="browser-default" required>
                 <option value="" disabled selected>Gender</option>
@@ -13,6 +14,7 @@
             </select>
         </div>
 
+        <!-- Age Field -->
         <div class="input-field col s12">
             <select id="age" name="age" class="browser-default" required>
                 <option value="" disabled selected>Age</option>
@@ -23,6 +25,7 @@
             </select>
         </div>
 
+        <!-- Daily Steps Field -->
         <div class="input-field col s12">
             <select id="daily_steps" name="daily_steps" class="browser-default" required>
                 <option value="" disabled selected>Daily steps</option>
@@ -33,6 +36,7 @@
             </select>
         </div>
 
+        <!-- Sleep Duration Field -->
         <div class="input-field col s12">
             <select id="sleep_duration" name="sleep_duration" class="browser-default" required>
                 <option value="" disabled selected>Sleep duration</option>
@@ -43,6 +47,7 @@
             </select>
         </div>
 
+        <!-- Physical Activity Level Field -->
         <div class="input-field col s12">
             <select id="daily_physical_activity" name="daily_physical_activity" class="browser-default" required>
                 <option value="" disabled selected>Physical activity level</option>
@@ -52,6 +57,7 @@
             </select>
         </div>
 
+        <!-- Quality of Sleep Field -->
         <div class="input-field col s12">
             <select id="quality_of_sleep" name="quality_of_sleep" class="browser-default" required>
                 <option value="" disabled selected>Quality of Sleep</option>
@@ -68,6 +74,7 @@
             </select>
         </div>
 
+        <!-- Stress Level Field -->
         <div class="input-field col s12">
             <select id="stress_level" name="stress_level" class="browser-default" required>
                 <option value="" disabled selected>Stress Level</option>
@@ -84,29 +91,54 @@
             </select>
         </div>
 
-        <div class="input-field col s12">
-            <input type="number" id="height" name="height" required>
-            <label for="height">Height (cm)</label>
+        <!-- Height Field -->
+        <div class="row">
+            <div class="input-field col s8">
+                <input type="number" id="height" name="height" step="0.01" required>
+                <label for="height">Height</label>
+                <span class="helper-text" data-error="Please enter a valid height" data-success="Valid"></span>
+            </div>
+            <div class="input-field col s4">
+                <select id="heightUnit" name="heightUnit" class="browser-default" onchange="handleHeightUnitChange()">
+                    <option value="cm" selected>cm</option>
+                    <option value="feet">feet</option>
+                </select>
+            </div>
         </div>
 
-        <div class="input-field col s12">
-            <input type="number" id="weight" name="weight" required>
-            <label for="weight">Weight (kg)</label>
+        <!-- Weight Field -->
+        <div class="row">
+            <div class="input-field col s8">
+                <input type="number" id="weight" name="weight" step="0.01" required>
+                <label for="weight">Weight</label>
+            </div>
+            <div class="input-field col s4">
+                <select id="weightUnit" name="weightUnit" class="browser-default">
+                    <option value="kg" selected>kg</option>
+                    <option value="lbs">lbs</option>
+                </select>
+            </div>
         </div>
 
-        <div class="input-field col s12">
-            <input type="number" id="systolic" name="systolic" required>
-            <label for="systolic">Systolic Blood Pressure</label>
+        <!-- Blood Pressure Fields -->
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="number" id="systolic" name="systolic" class="validate" required>
+                <label for="systolic">Systolic Blood Pressure</label>
+                <span class="helper-text" data-error="Please enter a valid number" data-success="Valid"></span>
+            </div>
+            <div class="input-field col s6">
+                <input type="number" id="diastolic" name="diastolic" class="validate" required>
+                <label for="diastolic">Diastolic Blood Pressure</label>
+                <span class="helper-text" data-error="Please enter a valid number" data-success="Valid"></span>
+            </div>
         </div>
 
+        <!-- Heart Rate Field -->
         <div class="input-field col s12">
-            <input type="number" id="diastolic" name="diastolic" required>
-            <label for="diastolic">Diastolic Blood Pressure</label>
-        </div>
-
-        <div class="input-field col s12">
-            <input type="number" id="heart_rate" name="heart_rate" required>
+            <input type="number" id="heart_rate" name="heart_rate" class="validate" required>
             <label for="heart_rate">Heart Rate (bpm)</label>
+            <span class="helper-text" data-error="Please enter a valid number" data-success="Valid"></span>
         </div>
 
         <button type="submit" class="btn waves-effect waves-light">Submit</button>

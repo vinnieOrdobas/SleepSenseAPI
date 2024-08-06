@@ -1,0 +1,19 @@
+/* Ensure the full height of the page is used */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content should take available space */
+.content {
+    flex: 1;
+}
+
+/* Push the footer to the bottom if there's not enough content */
+footer.page-footer {
+    margin-top: auto;
+}
+
+/* Add custom styles if needed */
