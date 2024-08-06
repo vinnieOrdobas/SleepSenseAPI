@@ -1,5 +1,4 @@
 import numpy as np
-import json
 import joblib
 import pandas as pd
 
@@ -43,7 +42,7 @@ class ParameterHandler:
             'confidence': {label: confidence_score[i] for i, label in enumerate(class_labels)}
         }
 
-        return json.dumps(result)
+        return result
 
     
     def _normalize_inputs(self):

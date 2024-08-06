@@ -1,7 +1,6 @@
 import pytest
 import numpy as np
 import pandas as pd
-import json
 import joblib
 import os
 from models.parameter_handler import ParameterHandler
@@ -93,4 +92,4 @@ def test_format_output(setup_parameter_handler):
     }
     
     formatted_output = handler.format_output(predicitions)
-    assert json.loads(formatted_output) == expected_result
+    assert formatted_output == expected_result

@@ -1,71 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Health Data Form</title>
-</head>
-<body>
-    <form id="healthForm" action="/predict" method="post">
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-        </select><br>
+{% extends "base.html" %}
 
-        <label for="age">Age:</label>
-        <select id="age" name="age">
-            <option value="26-35">26-35</option>
-            <option value="36-45">36-45</option>
-            <option value="46-55">46-55</option>
-            <option value="55-59">55-59</option>
-        </select><br>
+{% block title %}Health Data Form{% endblock %}
 
-        <label for="daily_steps">Daily Steps:</label>
-        <select id="daily_steps" name="daily_steps">
-            <option value="Under 4000">Under 4000</option>
-            <option value="5000-6500">5000-6500</option>
-            <option value="7000-9000">7000-9000</option>
-            <option value="Over 10000">Over 10000</option>
-        </select><br>
+{% block content %}
+    <h2>Health Data Form</h2>
+    <form id="healthForm" action="/predict" method="post" class="col s12">
+        <div class="input-field col s12">
+            <select id="gender" name="gender" class="browser-default" required>
+                <option value="" disabled selected>Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
 
-        <label for="sleep_duration">Sleep Duration:</label>
-        <select id="sleep_duration" name="sleep_duration">
-            <option value="5-6 Hours">5-6 hours</option>
-            <option value="6-7 Hours">6-7 hours</option>
-            <option value="7-8 Hours">7-8 hours</option>
-            <option value="8-9 Hours">8-9 hours</option>
-        </select><br>
+        <div class="input-field col s12">
+            <select id="age" name="age" class="browser-default" required>
+                <option value="" disabled selected>Age</option>
+                <option value="26-35">26-35</option>
+                <option value="36-45">36-45</option>
+                <option value="46-55">46-55</option>
+                <option value="55-59">55-59</option>
+            </select>
+        </div>
 
-        <label for="daily_physical_activity">Physical Activity:</label>
-        <select id="daily_physical_activity" name="daily_physical_activity">
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-        </select><br>
+        <div class="input-field col s12">
+            <select id="daily_steps" name="daily_steps" class="browser-default" required>
+                <option value="" disabled selected>Daily steps</option>
+                <option value="Under 4000">Under 4000</option>
+                <option value="5000-6500">5000-6500</option>
+                <option value="7000-9000">7000-9000</option>
+                <option value="Over 10000">Over 10000</option>
+            </select>
+        </div>
 
-        <label for="height">Height (cm):</label>
-        <input type="number" id="height" name="height" required><br>
+        <div class="input-field col s12">
+            <select id="sleep_duration" name="sleep_duration" class="browser-default" required>
+                <option value="" disabled selected>Sleep duration</option>
+                <option value="5-6 Hours">5-6 hours</option>
+                <option value="6-7 Hours">6-7 hours</option>
+                <option value="7-8 Hours">7-8 hours</option>
+                <option value="8-9 Hours">8-9 hours</option>
+            </select>
+        </div>
 
-        <label for="weight">Weight (kg):</label>
-        <input type="number" id="weight" name="weight" required><br>
+        <div class="input-field col s12">
+            <select id="daily_physical_activity" name="daily_physical_activity" class="browser-default" required>
+                <option value="" disabled selected>Physical activity level</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+        </div>
 
-        <label for="systolic">Systolic Blood Pressure:</label>
-        <input type="number" id="systolic" name="systolic" required><br>
+        <div class="input-field col s12">
+            <select id="quality_of_sleep" name="quality_of_sleep" class="browser-default" required>
+                <option value="" disabled selected>Quality of Sleep</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
 
-        <label for="diastolic">Diastolic Blood Pressure:</label>
-        <input type="number" id="diastolic" name="diastolic" required><br>
+        <div class="input-field col s12">
+            <select id="stress_level" name="stress_level" class="browser-default" required>
+                <option value="" disabled selected>Stress Level</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
 
-        <label for="quality_of_sleep">Quality of Sleep (1-10):</label>
-        <input type="number" id="quality_of_sleep" name="quality_of_sleep" min="1" max="10" required><br>
+        <div class="input-field col s12">
+            <input type="number" id="height" name="height" required>
+            <label for="height">Height (cm)</label>
+        </div>
 
-        <label for="stress_level">Stress Level (1-10):</label>
-        <input type="number" id="stress_level" name="stress_level" min="1" max="10" required><br>
+        <div class="input-field col s12">
+            <input type="number" id="weight" name="weight" required>
+            <label for="weight">Weight (kg)</label>
+        </div>
 
-        <label for="heart_rate">Heart Rate (bpm):</label>
-        <input type="number" id="heart_rate" name="heart_rate" required><br>
+        <div class="input-field col s12">
+            <input type="number" id="systolic" name="systolic" required>
+            <label for="systolic">Systolic Blood Pressure</label>
+        </div>
 
-        <input type="submit" value="Submit">
+        <div class="input-field col s12">
+            <input type="number" id="diastolic" name="diastolic" required>
+            <label for="diastolic">Diastolic Blood Pressure</label>
+        </div>
+
+        <div class="input-field col s12">
+            <input type="number" id="heart_rate" name="heart_rate" required>
+            <label for="heart_rate">Heart Rate (bpm)</label>
+        </div>
+
+        <button type="submit" class="btn waves-effect waves-light">Submit</button>
     </form>
-</body>
-</html>
+
+    <!-- Disclaimer Modal Structure -->
+    <div id="disclaimerModal" class="modal">
+        <div class="modal-content">
+            <h4>Disclaimer</h4>
+            <p>The result is not a medical diagnosis.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close btn-flat" onclick="submitForm()">Agree</a>
+            <a href="#!" class="modal-close btn-flat">Disagree</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_js %}
+<script src="{{ url_for('static', filename='form.js') }}"></script>
+{% endblock %}

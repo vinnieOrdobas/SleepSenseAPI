@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request
 from models.predictors import Predictors
 
 app = Flask(__name__)
@@ -26,8 +26,8 @@ def predict():
         response = {
             'error': str(error)
         }
-
-    return jsonify(response)
+    
+    return render_template('result.html', prediction=response['prediction'], confidence=response['confidence'])
 
 if __name__ == '__main__':
     app.run(debug=True)
