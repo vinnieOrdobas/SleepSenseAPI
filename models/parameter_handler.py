@@ -39,7 +39,7 @@ class ParameterHandler:
 
         result = {
             'prediction': self._map_prediction(predicted_class),
-            'confidence': {label: confidence_score[i] for i, label in enumerate(class_labels)}
+            'confidence': { label: confidence_score[i] for i, label in enumerate(class_labels) }
         }
 
         return result
