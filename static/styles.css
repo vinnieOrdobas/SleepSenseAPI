@@ -1,9 +1,21 @@
-/* Ensure the full height of the page is used */
+/* Colors */
+:root {
+    --primary-color: #b9a8ff; /* Lavender */
+    --secondary-color: #ffcccb; /* Soft pink */
+    --accent-color: #a8d0ff; /* Light blue */
+    --background-color: #f0f0f0; /* Off-white */
+    --text-color: #333333; /* Dark gray */
+}
+
+/* General Styles */
 html, body {
     height: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 /* Main content should take available space */
@@ -11,9 +23,81 @@ html, body {
     flex: 1;
 }
 
-/* Push the footer to the bottom if there's not enough content */
-footer.page-footer {
-    margin-top: auto;
+/* Navigation Bar */
+.nav-wrapper .brand-logo {
+    display: flex;
+    align-items: center;
+    background-color: var(--primary-color);
+}
+
+.nav-wrapper {
+    background-color: var(--primary-color);
+}
+
+.nav-wrapper .brand-logo i {
+    margin-right: 10px;
+}
+
+/* Footer */
+.page-footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+    background-color: var(--primary-color);
+}
+
+.page-footer .white-text {
+    color: var(--background-color);
+}
+
+/* Section Dividers */
+.section-divider {
+    width: 80px;
+    height: 8px;
+    background-color: var(--accent-color);
+    margin: 20px auto;
+    border-radius: 4px;
+}
+
+/* Card Styles */
+.card-layout {
+    background-color: var(--primary-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-icon {
+    margin-bottom: 15px;
+}
+
+/* CTA Buttons */
+
+.cta-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.cta-button {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--accent-color);
 }
 
 /* Center the submit button and add margins */
@@ -25,8 +109,8 @@ footer.page-footer {
 
 /* Submit button styling */
 .submit-btn {
-    background-color: #8B4513; /* Button color can be similar to the header */
-    color: white;
+    background-color: var(--secondary-color); /* Button color can be similar to the header */
+    color: var(--text-color);
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -41,22 +125,7 @@ footer.page-footer {
 }
 
 .submit-btn:hover {
-    background-color: #A0522D; /* Slightly lighter shade for hover effect */
-}
-
-/* Header and footer styling */
-header {
-    background-color: #6B4226; /* Warm wood-like color */
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-footer {
-    background-color: #556B2F; /* Green olive color */
-    color: white;
-    padding: 10px;
-    text-align: center;
+    background-color: var(--accent-color); /* Slightly lighter shade for hover effect */
 }
 
 /* Confidence bar styling */
@@ -88,4 +157,21 @@ footer {
     left: 0;
     color: black; /* Ensure percentage text is visible with a black color */
     font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+
+    .cta-button {
+        padding: 15px;
+    }
+
+    .section-divider {
+        width: 60px;
+        height: 6px;
+    }
 }
