@@ -5,6 +5,7 @@
     --accent-color: #a8d0ff; /* Light blue */
     --background-color: #f0f0f0; /* Off-white */
     --text-color: #333333; /* Dark gray */
+    --jumbotron-bg-color: #351688; /* Darker lavender for jumbotron */
 }
 
 /* General Styles */
@@ -21,6 +22,10 @@ html, body {
 /* Main content should take available space */
 .content {
     flex: 1;
+}
+
+.navbar-gutter {
+    height: 20px; /* Adjust the height as needed */
 }
 
 /* Navigation Bar */
@@ -128,6 +133,27 @@ html, body {
     background-color: var(--accent-color); /* Slightly lighter shade for hover effect */
 }
 
+/* Jumbotron */
+.jumbotron {
+    background-color: var(--jumbotron-bg-color);
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.jumbotron h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+.jumbotron p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
 /* Confidence bar styling */
 .confidence-bar-container {
     position: relative;
@@ -157,6 +183,48 @@ html, body {
     left: 0;
     color: black; /* Ensure percentage text is visible with a black color */
     font-weight: bold;
+}
+
+/* Disclaimer Modal Styles */
+#disclaimerModal .modal-content {
+    background-color: var(--modal-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#disclaimerModal h4 {
+    color: var(--modal-header-color);
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+}
+
+#disclaimerModal p {
+    color: var(--modal-text-color);
+    font-size: 18px;
+    text-align: center;
+    font-weight: 500;
+}
+
+#disclaimerModal .modal-footer {
+    background-color: var(--modal-bg-color);
+    border-top: none;
+    display: flex;
+    justify-content: center;
+}
+
+#disclaimerModal .modal-footer .btn {
+    margin: 0 10px;
+}
+
+#disclaimerModal .modal-footer .btn.agree-btn {
+    background-color: var(--agree-btn-color);
+    color: white;
+}
+
+#disclaimerModal .modal-footer .btn.disagree-btn {
+    background-color: var(--disagree-btn-color);
+    color: white;
 }
 
 /* Responsive Design */

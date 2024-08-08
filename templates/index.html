@@ -1,18 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="section center-align">
-        <h1>Welcome to SleepSense</h1>
-        <p>Your companion for better sleep and health.</p>
+    <!-- Jumbotron Section -->
+    <div class="navbar-gutter"></div>
+    <div class="jumbotron">
+        <h1>SleepSense</h1>
+        <p>Discover if you may suffer from a sleep disorder.</p>
         <div class="cta-container">
             <a href="{{ url_for('form') }}" class="cta-button">Get Started</a>
         </div>
     </div>
 
+    <!-- Card Grid Section -->
     <div class="section">
         <div class="section-divider"></div>
         <div class="row">
-            <div class="col s12 m6">
+            <!-- Card 1 -->
+            <div class="col s12 m6 l3">
                 <div class="card-layout">
                     <div class="card-icon">
                         <i class="fas fa-bed fa-3x"></i>
@@ -20,7 +24,8 @@
                     <p>Monitor and improve your sleep patterns with detailed insights.</p>
                 </div>
             </div>
-            <div class="col s12 m6">
+            <!-- Card 2 -->
+            <div class="col s12 m6 l3">
                 <div class="card-layout">
                     <div class="card-icon">
                         <i class="fas fa-lightbulb fa-3x"></i>
@@ -28,9 +33,26 @@
                     <p>Receive customized recommendations to enhance your sleep quality.</p>
                 </div>
             </div>
+            <!-- Card 3 -->
+            <div class="col s12 m6 l3">
+                <div class="card-layout">
+                    <div class="card-icon">
+                        <i class="fas fa-heartbeat fa-3x"></i>
+                    </div>
+                    <p>Track your heart rate during sleep and understand your body's needs.</p>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="col s12 m6 l3">
+                <div class="card-layout">
+                    <div class="card-icon">
+                        <i class="fas fa-cloud-moon fa-3x"></i>
+                    </div>
+                    <p>Explore relaxation techniques for a better night’s rest.</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="section-divider"></div>
-
 {% endblock %}
