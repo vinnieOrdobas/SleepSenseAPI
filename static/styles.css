@@ -19,28 +19,26 @@ html, body {
     color: var(--text-color);
 }
 
-/* Main content should take available space */
 .content {
     flex: 1;
 }
 
 .navbar-gutter {
-    height: 20px; /* Adjust the height as needed */
+    height: 20px;
 }
 
 /* Navigation Bar */
-.nav-wrapper .brand-logo {
-    display: flex;
-    align-items: center;
-    background-color: var(--primary-color);
-}
-
 .nav-wrapper {
     background-color: var(--primary-color);
 }
 
+.nav-wrapper .brand-logo {
+    display: flex;
+    align-items: center;
+}
+
 .icon-logo {
-    color: var(--background-color)
+    color: var(--background-color);
 }
 
 .nav-wrapper .brand-logo i {
@@ -82,18 +80,18 @@ html, body {
     justify-content: center;
     align-items: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    min-height: 180px; /* Adjust this value to match three lines of text */
+    min-height: 180px; /* Adjust this value to fit content */
 }
 
 .card-layout p {
     margin: 0;
     line-height: 1.5;
-    height: 4.5em; /* Ensures the paragraph occupies space for three lines */
+    height: 4.5em; /* Ensures space for three lines of text */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    overflow: hidden; /* Hide any overflow text */
+    overflow: hidden; /* Hide overflow text */
 }
 
 .card-layout:hover {
@@ -103,6 +101,17 @@ html, body {
 
 .card-icon {
     margin-bottom: 15px;
+}
+
+/* Full Width Card Styles */
+.full-width {
+    width: 100%;
+}
+
+.full-width .card-layout {
+    background-color: var(--jumbotron-bg-color);
+    padding: 20px;
+    min-height: 180px;
 }
 
 /* CTA Buttons */
@@ -126,32 +135,26 @@ html, body {
     background-color: var(--accent-color);
 }
 
-/* Center the submit button and add margins */
+/* Submit Button Styles */
 .submit-container {
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px; /* Gutter between the button and the footer */
+    margin: 20px 0;
 }
 
-/* Submit button styling */
 .submit-btn {
-    background-color: var(--secondary-color); /* Button color can be similar to the header */
+    background-color: var(--secondary-color);
     color: var(--text-color);
     border: none;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     width: 100px;
     margin: 0 auto;
 }
 
 .submit-btn:hover {
-    background-color: var(--accent-color); /* Slightly lighter shade for hover effect */
+    background-color: var(--accent-color);
 }
 
 /* Jumbotron */
@@ -175,7 +178,7 @@ html, body {
     margin-bottom: 20px;
 }
 
-/* Confidence bar styling */
+/* Confidence Bar Styles */
 .confidence-bar-container {
     position: relative;
     background-color: #f3f3f3;
@@ -186,12 +189,12 @@ html, body {
 
 .confidence-bar {
     height: 30px;
-    background-color: green; /* Bar color */
+    background-color: green;
     border-radius: 25px 0 0 25px;
     text-align: center;
-    line-height: 30px; /* Center the percentage text vertically */
-    color: black; /* Change text color to black */
-    white-space: nowrap; /* Prevent text wrapping */
+    line-height: 30px;
+    color: black;
+    white-space: nowrap;
     overflow: hidden;
     width: var(--confidence-width);
 }
@@ -202,7 +205,7 @@ html, body {
     text-align: center;
     top: 0;
     left: 0;
-    color: black; /* Ensure percentage text is visible with a black color */
+    color: black;
     font-weight: bold;
 }
 
@@ -250,7 +253,7 @@ html, body {
 
 /* About Page Styles */
 .about-hero {
-    background-color: var(--primary-color);
+    background-color: var(--jumbotron-bg-color);
     color: var(--background-color);
     padding: 40px 20px;
     text-align: center;
@@ -261,6 +264,7 @@ html, body {
 .about-hero h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
+    color: var(--secondary-color);
 }
 
 .about-hero p {
@@ -272,29 +276,22 @@ html, body {
     background-color: var(--background-color);
 }
 
-.card-layout {
-    background-color: var(--primary-color);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.about-page .card-layout {
+    background-color: var(--jumbotron-bg-color);
     padding: 20px;
-    text-align: center;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    min-height: 220px;
 }
 
-.card-header {
-    margin-bottom: 15px;
+.about-page .card-layout p {
+    height: auto; /* Allow height to grow with content */
 }
 
-.card-header h2 {
+.about-page .card-header h2 {
     font-size: 1.75rem;
     color: var(--secondary-color);
 }
 
-.card-body p {
+.about-page .card-body p {
     font-size: 1rem;
     color: var(--background-color);
     line-height: 1.6;
@@ -324,11 +321,27 @@ html, body {
         font-size: 1rem;
     }
 
-    .card-layout {
-        padding: 15px;
-    }
-
     .card-header h2 {
         font-size: 1.5rem;
+    }
+
+    .about-page .card-layout {
+        min-height: 250px;
+    }
+
+    .about-page .card-body p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 1199px) {
+    .col.s12.m6.l3 {
+        flex: 0 1 48%;
+    }
+}
+
+@media (max-width: 767px) {
+    .col.s12.m6.l3 {
+        flex: 0 1 100%;
     }
 }
