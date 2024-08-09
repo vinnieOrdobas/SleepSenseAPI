@@ -3,7 +3,7 @@
     --primary-color: #b9a8ff; /* Lavender */
     --secondary-color: #ffcccb; /* Soft pink */
     --accent-color: #a8d0ff; /* Light blue */
-    --background-color: #f0f0f0; /* Off-white */
+    --background-color: #f7f1d9; /* Off-white */
     --text-color: #333333; /* Dark gray */
     --jumbotron-bg-color: #351688; /* Darker lavender for jumbotron */
 }
@@ -37,6 +37,10 @@ html, body {
 
 .nav-wrapper {
     background-color: var(--primary-color);
+}
+
+.icon-logo {
+    color: var(--background-color)
 }
 
 .nav-wrapper .brand-logo i {
@@ -77,6 +81,24 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 180px; /* Adjust this value to match three lines of text */
+}
+
+.card-layout p {
+    margin: 0;
+    line-height: 1.5;
+    height: 4.5em; /* Ensures the paragraph occupies space for three lines */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden; /* Hide any overflow text */
+}
+
+.card-layout:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card-icon {
@@ -84,7 +106,6 @@ html, body {
 }
 
 /* CTA Buttons */
-
 .cta-container {
     display: flex;
     justify-content: center;
@@ -227,9 +248,61 @@ html, body {
     color: white;
 }
 
+/* About Page Styles */
+.about-hero {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.about-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+}
+
+.section {
+    padding: 20px;
+    background-color: var(--background-color);
+}
+
+.card-layout {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-header {
+    margin-bottom: 15px;
+}
+
+.card-header h2 {
+    font-size: 1.75rem;
+    color: var(--secondary-color);
+}
+
+.card-body p {
+    font-size: 1rem;
+    color: var(--background-color);
+    line-height: 1.6;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    .card {
+    .card-layout {
         margin-bottom: 15px;
         padding: 15px;
     }
@@ -241,5 +314,21 @@ html, body {
     .section-divider {
         width: 60px;
         height: 6px;
+    }
+
+    .about-hero h1 {
+        font-size: 2rem;
+    }
+
+    .about-hero p {
+        font-size: 1rem;
+    }
+
+    .card-layout {
+        padding: 15px;
+    }
+
+    .card-header h2 {
+        font-size: 1.5rem;
     }
 }
