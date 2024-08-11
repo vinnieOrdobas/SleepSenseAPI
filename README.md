@@ -1,5 +1,5 @@
 # SleepSenseAPI
-## LIVE DEMO
+## [LIVE DEMO](https://sleepsenseapi.onrender.com/)
 
 An app that detects whether an user has a sleep disorder, based on anonymised form data.
 
@@ -7,12 +7,15 @@ An app that detects whether an user has a sleep disorder, based on anonymised fo
 
 
 ### Python Libraries
+- flask
+- gunicorn
+- joblib
+- pytest
 - numpy
 - pandas
 - matplotlib
 - seaborn
 - scikit-learn
-- imblearn
 
 ## Installation:
 1. **Clone the repository:**
@@ -40,7 +43,16 @@ source <env_name>/bin/activate
 pip install -r requirements.txt
 ```
 5. **Run Flask server:**
-Start Flask's development server:
+
+- Uncomment line 38 in the `app.py` file:
+```
+# The following code is commented out because Render runs the application using gunicorn in production. If running locally, uncomment the code below:
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
+```
+
+- Start Flask's development server:
 ```
 cd API
 python3 app.py

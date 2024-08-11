@@ -22,4 +22,22 @@
             </ul>
         </div>
     </div>
+
+    <!-- Accordion for Resources -->
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header">
+                <span>Resources</span>
+            </div>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="https://www.mayoclinic.org/diseases-conditions/insomnia/symptoms-causes/syc-20355167", target="_blank" class="resource-link">Insomnia</a></li>
+                    <li><a href="https://www.mayoclinic.org/diseases-conditions/sleep-apnea/symptoms-causes/syc-20377631", target="_blank" class="resource-link">Sleep Apnea resources</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+{% endblock %}
+{% block custom_js %}
+    <script src="{{ url_for('static', filename='result.js') }}"></script>
 {% endblock %}

@@ -1,3 +1,4 @@
+// Initialize objects
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize Materialize select elements
     var selectElems = document.querySelectorAll('select');
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     handleHeightUnitChange();
 });
 
+// Modal controllers
 function showDisclaimerModal(event) {
     event.preventDefault();
     if (validateForm()) {
@@ -23,6 +25,7 @@ function showDisclaimerModal(event) {
     }
 }
 
+// Form controllers
 function submitForm() {
     var heightUnit = document.getElementById('heightUnit').value;
     if (heightUnit === 'feet') {
@@ -39,6 +42,7 @@ function isInteger(value) {
     return Number.isInteger(parseFloat(value));
 }
 
+// Form validation
 function validateField(field, isValid) {
     if (isValid) {
         field.classList.remove('invalid');

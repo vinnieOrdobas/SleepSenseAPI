@@ -151,6 +151,11 @@ html, body {
     border-radius: 5px;
     width: 100px;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centering the text vertically */
+    height: 40px; /* Adjust height to fit your design */
+    line-height: 1.5; /* Ensures the text is vertically centered */
 }
 
 .submit-btn:hover {
@@ -295,6 +300,49 @@ html, body {
     font-size: 1rem;
     color: var(--background-color);
     line-height: 1.6;
+}
+
+/* Accordion Styles */
+.collapsible-header {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.collapsible-body {
+    background-color: var(--secondary-color);
+    padding: 0; /* Remove padding for a clean look */
+}
+
+.collapsible-body ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.collapsible-body ul li {
+    border-bottom: 1px solid var(--primary-color) !important; /* Ensure the line is visible */
+}
+
+.collapsible-body ul li:last-child {
+    border-bottom: none !important; /* Remove the last border */
+}
+
+.collapsible-body ul li a {
+    display: block;
+    padding: 15px; /* Adjust padding to make it look like a table row */
+    color: var(--text-color);
+    text-decoration: none;
+    background-color: var(--background-color); /* Optional: for a table-like feel */
+}
+
+.collapsible-body ul li a:hover {
+    background-color: var(--accent-color);
+    text-decoration: underline;
+    color: var(--background-color); /* Ensure text is readable on hover */
 }
 
 /* Responsive Design */

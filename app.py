@@ -34,5 +34,6 @@ def predict():
     return render_template('result.html', prediction=response['prediction'], confidence=response['confidence'])
 
 # The following code is commented out because Vercel runs the application using gunicorn in production. If running locally, uncomment the code below:
+
 # if __name__ == '__main__':
 #     app.run(debug=True)
